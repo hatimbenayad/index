@@ -21,32 +21,20 @@
     --white: #ffffff;
     --border-color: #eaeaea;
     --gradient-primary: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
-    
-    /* Font Variables */
     --font-primary: 'Inter', sans-serif;
     --font-heading: 'Poppins', sans-serif;
-    
-    /* Spacing Variables */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 3rem;
     --spacing-xl: 5rem;
-    
-    /* Border Radius */
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
     --border-radius-lg: 16px;
-    
-    /* Transitions */
     --transition-fast: 0.3s ease;
     --transition-medium: 0.5s ease;
 }
-
-/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
-
-/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -116,8 +104,6 @@ section h2::after {
     margin: var(--spacing-sm) auto 0;
     border-radius: var(--border-radius-sm);
 }
-
-/* ===== BUTTONS ===== */
 .cta-button, .submit-button, .project-link {
     display: inline-block;
     padding: 12px 28px;
@@ -142,8 +128,6 @@ section h2::after {
     padding: 8px 16px;
     font-size: 0.9rem;
 }
-
-/* ===== NAVIGATION ===== */
 #main-nav {
     position: fixed;
     top: 0;
@@ -220,8 +204,6 @@ section h2::after {
     border-radius: var(--border-radius-sm);
     transition: var(--transition-fast);
 }
-
-/* ===== HERO SECTION ===== */
 #hero {
     height: 100vh;
     display: flex;
@@ -367,7 +349,6 @@ section h2::after {
     margin-bottom: 0;
 }
 
-/* ===== PROJECTS SECTION ===== */
 .project-filters {
     display: flex;
     justify-content: center;
@@ -461,7 +442,6 @@ section h2::after {
     font-weight: 500;
 }
 
-/* ===== SKILLS SECTION ===== */
 #skills {
     background-color: var(--bg-light);
 }
@@ -529,8 +509,6 @@ section h2::after {
     width: 0;
     transition: width 1s ease-out;
 }
-
-/* ===== CONTACT SECTION ===== */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -689,7 +667,6 @@ section h2::after {
     color: var(--white);
 }
 
-/* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -701,7 +678,6 @@ section h2::after {
     }
 }
 
-/* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 992px) {
     html {
         font-size: 15px;
@@ -790,7 +766,6 @@ section h2::after {
 </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav id="main-nav">
         <div class="logo">
             <a href="#hero">Hatim Ben Ayad</a>
@@ -808,8 +783,6 @@ section h2::after {
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-
-    <!-- Hero Section -->
     <header id="hero">
         <div class="container">
             <h1>Hatim Ben Ayad</h1>
@@ -819,13 +792,11 @@ section h2::after {
     </header>
 
     <main>
-        <!-- About Me Section -->
         <section id="about">
             <div class="container">
                 <h2>About Me</h2>
                 <div class="about-content">
                     <div class="about-image">
-                        <!-- Placeholder for profile image -->
                         <div class="profile-placeholder"></div>
                     </div>
                     <div class="about-text">
@@ -850,7 +821,6 @@ section h2::after {
             </div>
         </section>
 
-        <!-- Projects/Portfolio Section -->
         <section id="projects">
             <div class="container">
                 <h2>My Projects</h2>
@@ -1051,7 +1021,7 @@ section h2::after {
 
                             <div class="skill-item">
                                 <div class="skill-icon">
-                                    <i class="fas fa-pencil-ruler"></i> <!-- Placeholder for Figma -->
+                                    <i class="fas fa-pencil-ruler"></i> 
                                 </div>
                                 
                                 <h4>Figma</h4>
@@ -1073,7 +1043,7 @@ section h2::after {
 
                             <div class="skill-item">
                                 <div class="skill-icon">
-                                    <i class="fas fa-cloud"></i> <!-- Placeholder for AWS -->
+                                    <i class="fas fa-cloud"></i> 
                                 </div>
                                 
                                 <h4>AWS</h4>
@@ -1087,7 +1057,6 @@ section h2::after {
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact">
             <div class="container">
                 <h2>Get In Touch</h2>
@@ -1181,9 +1150,7 @@ section h2::after {
     </footer>
 
     <script>
-// Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function() {
-    // Update copyright year
     document.getElementById('current-year').textContent = new Date().getFullYear();
     
     // Mobile Navigation Toggle
@@ -1203,15 +1170,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Close mobile menu when clicking a navigation link
     const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
-                
-                // Reset hamburger icon
+
                 const spans = navToggle.querySelectorAll('span');
                 spans[0].classList.remove('rotate-down');
                 spans[1].classList.remove('hide');
@@ -1220,16 +1185,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Project Filtering
     const filterButtons = document.querySelectorAll('.filter-button');
     const projectCards = document.querySelectorAll('.project-card');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to current button
+
             this.classList.add('active');
             
             const filter = this.getAttribute('data-filter');
@@ -1258,28 +1220,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Skill Progress Animation
     const skillProgressBars = document.querySelectorAll('.skill-progress');
     
-    // Intersection Observer for skill bars
     const animateSkillBars = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const progressBar = entry.target;
                 const level = progressBar.getAttribute('data-level');
                 progressBar.style.width = level + '%';
-                // Unobserve after animation is triggered
                 animateSkillBars.unobserve(progressBar);
             }
         });
     }, { threshold: 0.5 });
     
-    // Observe all skill progress bars
     skillProgressBars.forEach(bar => {
         animateSkillBars.observe(bar);
     });
     
-    // Scroll Animation for Elements
     const fadeElements = document.querySelectorAll('.about-content, .project-card, .skill-item, .contact-item');
     
     const fadeInOnScroll = new IntersectionObserver((entries) => {
@@ -1295,7 +1252,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fadeInOnScroll.observe(element);
     });
     
-    // Fixed Navigation Background on Scroll
+
     const navbar = document.getElementById('main-nav');
     
     window.addEventListener('scroll', function() {
@@ -1305,21 +1262,20 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.remove('scrolled');
         }
     });
-    
-    // Form Validation and Submission
+
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form fields
+
             const nameField = document.getElementById('name');
             const emailField = document.getElementById('email');
             const subjectField = document.getElementById('subject');
             const messageField = document.getElementById('message');
             
-            // Basic validation
+
             let isValid = true;
             
             if (nameField.value.trim() === '') {
@@ -1354,27 +1310,27 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             if (isValid) {
-                // Simulate form submission
+
                 const submitButton = contactForm.querySelector('.submit-button');
                 submitButton.innerHTML = 'Sending...';
                 submitButton.disabled = true;
                 
-                // Simulate API call with timeout
+
                 setTimeout(() => {
-                    // Reset form
+
                     contactForm.reset();
                     
-                    // Show success message
+
                     const successMessage = document.createElement('div');
                     successMessage.className = 'success-message';
                     successMessage.innerHTML = 'Your message has been sent successfully!';
                     contactForm.appendChild(successMessage);
                     
-                    // Reset button
+
                     submitButton.innerHTML = 'Send Message';
                     submitButton.disabled = false;
                     
-                    // Remove success message after 5 seconds
+
                     setTimeout(() => {
                         successMessage.remove();
                     }, 5000);
@@ -1383,20 +1339,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Helper functions for form validation
+
     function showError(field, message) {
-        // Remove any existing error
+
         removeError(field);
-        
-        // Add error class to field
         field.classList.add('error');
-        
-        // Create error message element
         const errorMessage = document.createElement('div');
         errorMessage.className = 'error-message';
         errorMessage.innerHTML = message;
-        
-        // Insert error message after field
         field.parentNode.insertBefore(errorMessage, field.nextSibling);
     }
     
@@ -1426,11 +1376,9 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(typeWriter, 100);
         }
     }
-    
-    // Start typing effect after a brief delay
+
     setTimeout(typeWriter, 500);
     
-    // Add additional CSS rules for animations
     const style = document.createElement('style');
     style.innerHTML = `
         /* Additional Animation Styles */
