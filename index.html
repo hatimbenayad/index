@@ -1263,81 +1263,105 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+// Form Submission
+const contactForm = document.getElementById('contactForm');
 
-            const nameField = document.getElementById('name');
-            const emailField = document.getElementById('email');
-            const subjectField = document.getElementById('subject');
-            const messageField = document.getElementById('message');
-            
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            let isValid = true;
-            
-            if (nameField.value.trim() === '') {
-                showError(nameField, 'Name is required');
-                isValid = false;
-            } else {
-                removeError(nameField);
-            }
-            
-            if (emailField.value.trim() === '') {
-                showError(emailField, 'Email is required');
-                isValid = false;
-            } else if (!isValidEmail(emailField.value)) {
-                showError(emailField, 'Please enter a valid email');
-                isValid = false;
-            } else {
-                removeError(emailField);
-            }
-            
-            if (subjectField.value.trim() === '') {
-                showError(subjectField, 'Subject is required');
-                isValid = false;
-            } else {
-                removeError(subjectField);
-            }
-            
-            if (messageField.value.trim() === '') {
-                showError(messageField, 'Message is required');
-                isValid = false;
-            } else {
-                removeError(messageField);
-            }
-            
-            if (isValid) {
+        // Get form fields
+        const nameField = document.getElementById('name');
+        const emailField = document.getElementById('email');
+        const subjectField = document.getElementById('subject');
+        const messageField = document.getElementById('message');
 
-                const submitButton = contactForm.querySelector('.submit-button');
-                submitButton.innerHTML = 'Sending...';
-                submitButton.disabled = true;
-                
+        // Basic validation
+        let isValid = true;
 
-                setTimeout(() => {
+        if (nameField.value.trim() === '') {
+            showError(nameField, 'Name is required');
+            isValid = false;
+        } else {
+            removeError(nameField);
+        }
 
+        if (emailField.value.trim() === '') {
+            showError(emailField, 'Email is required');
+            isValid = false;
+        } else if (!isValidEmail(emailField.value)) {
+            showError(emailField, 'Please enter a valid email');
+            isValid = false;
+        } else {
+            removeError(emailField);
+        }
+
+        if (subjectField.value.trim() === '') {
+            showError(subjectField, 'Subject is required');
+            isValid = false;
+        } else {
+            removeError(subjectField);
+        }
+
+        if (messageField.value.trim() === '') {
+            showError(messageField, 'Message is required');
+            isValid = false;
+        } else {
+            removeError(messageField);
+        }
+
+        if (isValid) {
+            const submitButton = contactForm.querySelector('.submit-button');
+            submitButton.innerHTML = 'Sending...';
+            submitButton.disabled = true;
+
+            // Submit the form to Formspree
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Reset form
                     contactForm.reset();
-                    
 
+                    // Show success message
                     const successMessage = document.createElement('div');
                     successMessage.className = 'success-message';
                     successMessage.innerHTML = 'Your message has been sent successfully!';
                     contactForm.appendChild(successMessage);
-                    
 
+                    // Reset button
                     submitButton.innerHTML = 'Send Message';
                     submitButton.disabled = false;
-                    
 
+                    // Remove success message after 5 seconds
                     setTimeout(() => {
                         successMessage.remove();
                     }, 5000);
-                }, 1500);
-            }
-        });
-    }
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                // Show error message
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message';
+                errorMessage.innerHTML = 'Something went wrong. Please try again later.';
+                contactForm.appendChild(errorMessage);
+                submitButton.innerHTML = 'Send Message';
+                submitButton.disabled = false;
+
+                setTimeout(() => {
+                    errorMessage.remove();
+                }, 5000);
+            });
+        }
+    });
+}
     
 
     function showError(field, message) {
